@@ -184,11 +184,11 @@ const BookList: React.FC = () => (
           key={book.id}
           className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center hover:shadow-lg transition"
         >
-          <img
-            src={book.cover_image}
-            alt={book.title}
-            className="w-32 h-44 object-cover rounded mb-4 border"
-          />
+        <img
+  src={`${import.meta.env.BASE_URL}${book.cover_image}`}
+  alt={book.title}
+  className="w-32 h-44 object-cover rounded mb-4 border"
+/>
           <h3 className="text-lg font-semibold mb-1 text-center">{book.title}</h3>
           <p className="text-sm text-gray-600 mb-1">
             <span className="font-medium">Auteur :</span> {book.author.name}
