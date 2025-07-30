@@ -185,7 +185,7 @@ const BookList: React.FC = () => (
           className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center hover:shadow-lg transition"
         >
 <img
-  src={`./${book.cover_image}`}
+  src={`/gestion-librairie/${book.cover_image}`}
   alt={book.title}
   className="w-32 h-44 object-cover rounded mb-4 border"
 />
