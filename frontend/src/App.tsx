@@ -11,11 +11,11 @@ import AddCategory from './pages/Categories/AddCategory';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/gestion-librairie" >
       <Layout>
         <Routes>
+          <Route path="/" element={<BookList />} />
           <Route path="/books" element={<BookList />} />
-          <Route path="/" element={<Navigate to="/books" />} />
           <Route path="/books/add" element={<AddBook />} />
           <Route path="/books/edit/:id" element={<EditBook />} />
           <Route path="/authors" element={<AuthorList />} />
