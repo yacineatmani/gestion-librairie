@@ -15,7 +15,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
-  timeout: 10000,
+  timeout: 30000,
 });
 
 const handleApiError = (error: unknown) => {
@@ -51,9 +51,16 @@ export const fetchBook = async (id: number): Promise<Book> => {
   }
 };
 
-export const createBook = async (book: Omit<Book, 'id'>): Promise<Book> => {
+export const createBook = async (data: FormData | Omit<Book, 'id'>): Promise<Book> => {
   try {
-    const response = await api.post<ApiResponse<Book>>('/books', book);
+    const isFormData = data instanceof FormData;
+
+    const response = await api.post<ApiResponse<Book>>('/books', data, {
+      headers: isFormData
+        ? { 'Content-Type': 'multipart/form-data' } // Laissez le navigateur gérer le boundary
+        : undefined, // Utilisez les en-têtes par défaut pour JSON
+    });
+
     return response.data.data;
   } catch (error) {
     throw handleApiError(error);

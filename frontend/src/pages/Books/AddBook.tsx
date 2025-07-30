@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createBook } from '../../services/api';
-import { Book } from '../../types';
 import PageHeader from '../../components/Layout/PageHeader';
 import BookForm from '../../components/Books/BookForm';
 import Alert from '../../components/UI/Alert';
@@ -11,14 +10,16 @@ const AddBook: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (bookData: Omit<Book, 'id'>) => {
+  const handleSubmit = async (formData: FormData) => {
     try {
+      console.log('FormData being sent:', Array.from(formData.entries())); // Log des données
       setLoading(true);
-      await createBook(bookData);
+      await createBook(formData); // Envoie directement le FormData au backend
       navigate('/books', { state: { successMessage: 'Book added successfully' } });
     } catch (err) {
       setError('Failed to add book. Please try again later.');
-      console.error(err);
+      console.error('Error while adding book:', err);
+    } finally {
       setLoading(false);
     }
   };

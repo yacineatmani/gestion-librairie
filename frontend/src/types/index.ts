@@ -8,7 +8,8 @@ export interface Book {
     updated_at?: string;
     author?: Author;
     category?: Category;
-  }
+    cover_image?: string; // <-- Ajoute cette ligne
+}
   
   export interface Author {
     id?: number;
