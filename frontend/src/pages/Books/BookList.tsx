@@ -184,8 +184,8 @@ const BookList: React.FC = () => (
           key={book.id}
           className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center hover:shadow-lg transition"
         >
-        <img
-  src={`${import.meta.env.BASE_URL}${book.cover_image}`}
+<img
+  src={`./${book.cover_image}`}
   alt={book.title}
   className="w-32 h-44 object-cover rounded mb-4 border"
 />
